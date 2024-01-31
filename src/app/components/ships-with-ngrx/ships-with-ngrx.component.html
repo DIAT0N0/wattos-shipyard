@@ -1,0 +1,22 @@
+<main>
+  <h1>Starships available</h1>
+  <h2>Selected ship: {{ selectedShip }}</h2>
+  <h3>Ships amount: {{ shipCount() || 0 }}</h3>
+  <!-- <button (click)="onClickForShips()">Click for ships!</button> -->
+  <!-- <button (click)="getAndSetShips()">Get starships!</button> -->
+
+  @if(isLoading()) {
+  <div>Loading...</div>
+  } @if (ships()) { @for (item of ships() ; track $index) {
+  <div class="ship-wrapper">
+    <app-starship
+      (deleteShip)="removeThisShip($index)"
+      (selection)="setSelectedShip($event)"
+      [starShipName]="item.name"
+      [starShipClass]="item.starship_class"
+    />
+  </div>
+  } @empty {
+  <div>It's empty!</div>
+  } }
+</main>

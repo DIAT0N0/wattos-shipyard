@@ -1,0 +1,15 @@
+<main>
+  <h1>Starships available</h1>
+  <h2>Selected Ship: {{ selectedShip }}</h2>
+  <button (click)="getAndSetShips()">See all the ships!</button>
+  @if (starShips.results) { @for (starShip of starShips.results ; track $index)
+  {
+  <app-starship
+    (shipSelection)="setSelectedShip($event)"
+    [starShipName]="starShip.name"
+    [starShipClass]="starShip.starship_class"
+  ></app-starship>
+  } @empty {
+  <p>NO SHIPS!</p>
+  } }
+</main>
